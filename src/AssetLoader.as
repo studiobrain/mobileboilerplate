@@ -32,6 +32,9 @@ package
 			if (background) 
 			{
 				_background = background;
+				_background.alignPivot();
+				_background.x = MobileBoilerPlate.stageWidth * 0.5;
+				_background.y = MobileBoilerPlate.stageHeight * 0.5;
 				addChild(_background);
 			}
 			

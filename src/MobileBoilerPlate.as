@@ -34,11 +34,12 @@ package
 		/**
 		 *	
 		 * setup all possible bg images here and instantiate them within getScaleFactor();
-		 * ex: [Embed(source="/textures/3x/xhdpi_bg.png")]
+		 * 
 		 * 
 		 */
 		
-		//[Embed(source="/textures/3x/xhdpi__bg.png")]
+		//change this to your image
+		[Embed(source="assets/textures/calm.png")]
 		
 		public static var XHDPI:Class;
 		
@@ -93,6 +94,7 @@ package
 			
 			if (_background)
 			{
+				trace('_background: ' + _background);
 				_background.width  		= MobileBoilerPlate.stageWidth;
 				_background.height 		= MobileBoilerPlate.stageHeight;
 				_background.smoothing 	= true;
@@ -143,8 +145,7 @@ package
 					if (Capabilities.screenDPI > 240)  
 					{
 						MobileBoilerPlate.scaleFactor = 3; 
-						//_background = new XHDPI(); 
-						//Main.prefix = "xhdpi_";
+						_background = new XHDPI(); 
 					}
 					break;
 				default:
@@ -162,6 +163,9 @@ package
 					{
 						MobileBoilerPlate.scaleFactor = 3; // scaled 2
 					}
+					
+					_background = new XHDPI(); 
+					
 					break;
 			}
 			
@@ -184,17 +188,16 @@ package
 			
 			MobileBoilerPlate.star.removeEventListener(starling.events.Event.ROOT_CREATED, rootCreated);
 			
-			//removeChild(_background);
+			removeChild(_background);
 			
-			//var bgTexture:Texture = Texture.fromBitmap(_background, false, false, Main.scaleFactor);
-			//var backGroundImage:Image = new Image(bgTexture);
+			var bgTexture:Texture = Texture.fromBitmap(_background, false, false);
+			var backGroundImage:Image = new Image(bgTexture);
 			
-			//backGroundImage.alignPivot();
-			//backGroundImage.x 		= (-Main.stageWidth * 0.05);
-			//backGroundImage.width 	= Main.stageWidth * 2;
-			//backGroundImage.height 	= Main.stageHeight * 1.05;
+			backGroundImage.alignPivot();
+			backGroundImage.width  		= MobileBoilerPlate.stageWidth;
+			backGroundImage.height 		= MobileBoilerPlate.stageHeight;
 			
-			app.start(_assets/*, backGroundImage*/);
+			app.start(_assets, backGroundImage);
 			MobileBoilerPlate.star.start();
 			
 			Starling.current.showStats = true;
